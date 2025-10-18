@@ -13,8 +13,6 @@ import photoLifestyle from "@/assets/photo-lifestyle.jpg";
 import photoBusiness from "@/assets/photo-business.jpg";
 
 const Index = () => {
-  const [activeCategory, setActiveCategory] = useState<string>("beauty");
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     toast({
@@ -22,6 +20,11 @@ const Index = () => {
       description: "Gracias por contactar. Te responderé pronto.",
     });
     (e.target as HTMLFormElement).reset();
+  };
+
+  const scrollToCategory = (categoryId: string) => {
+    const element = document.getElementById(categoryId);
+    element?.scrollIntoView({ behavior: "smooth", block: "center" });
   };
 
   const categories = [
@@ -141,16 +144,12 @@ const Index = () => {
 
           {/* Category Navigation */}
           <ScrollReveal delay={100}>
-            <div className="flex flex-wrap justify-center gap-4 mb-12">
+            <div className="flex flex-wrap justify-center gap-4 mb-16">
               {categories.map((category) => (
                 <button
                   key={category.id}
-                  onClick={() => setActiveCategory(category.id)}
-                  className={`px-8 py-3 rounded-full font-semibold text-lg transition-smooth ${
-                    activeCategory === category.id
-                      ? "bg-primary text-primary-foreground shadow-soft"
-                      : "bg-card text-foreground hover:bg-secondary"
-                  }`}
+                  onClick={() => scrollToCategory(category.id)}
+                  className="px-8 py-3 rounded-full font-semibold text-lg transition-smooth bg-card text-foreground hover:bg-primary hover:text-primary-foreground shadow-soft"
                 >
                   {category.title}
                 </button>
@@ -158,21 +157,30 @@ const Index = () => {
             </div>
           </ScrollReveal>
 
-          {/* Video Grid */}
-          <ScrollReveal delay={200}>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-              {Array.from({ length: categories.find(c => c.id === activeCategory)?.videos || 5 }).map((_, i) => (
-                <div
-                  key={i}
-                  className={`aspect-[9/16] rounded-xl ${categories.find(c => c.id === activeCategory)?.bgColor} shadow-soft hover-lift overflow-hidden relative group cursor-pointer`}
-                >
-                  <div className="w-full h-full flex items-center justify-center">
-                    <Play className="w-16 h-16 text-primary opacity-50 group-hover:opacity-100 transition-smooth" />
+          {/* All Video Categories */}
+          <div className="space-y-20">
+            {categories.map((category, categoryIndex) => (
+              <ScrollReveal key={category.id} delay={categoryIndex * 100}>
+                <div id={category.id} className="scroll-mt-24">
+                  <h3 className="text-3xl md:text-4xl font-bold text-center mb-8 text-foreground">
+                    {category.title}
+                  </h3>
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                    {Array.from({ length: category.videos }).map((_, i) => (
+                      <div
+                        key={i}
+                        className={`aspect-[9/16] rounded-xl ${category.bgColor} shadow-soft hover-lift overflow-hidden relative group cursor-pointer`}
+                      >
+                        <div className="w-full h-full flex items-center justify-center">
+                          <Play className="w-16 h-16 text-primary opacity-50 group-hover:opacity-100 transition-smooth" />
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              ))}
-            </div>
-          </ScrollReveal>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 
