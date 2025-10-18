@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
 import ScrollReveal from "@/components/ScrollReveal";
+import { useState } from "react";
 import profilePhoto from "@/assets/profile-photo.jpg";
 import aboutPhoto from "@/assets/about-photo.jpg";
 import photoFood from "@/assets/photo-food.jpg";
@@ -12,6 +13,8 @@ import photoLifestyle from "@/assets/photo-lifestyle.jpg";
 import photoBusiness from "@/assets/photo-business.jpg";
 
 const Index = () => {
+  const [activeCategory, setActiveCategory] = useState<string>("beauty");
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     toast({
@@ -21,6 +24,13 @@ const Index = () => {
     (e.target as HTMLFormElement).reset();
   };
 
+  const categories = [
+    { id: "beauty", title: "Beauty 💄", videos: 5, bgColor: "bg-secondary" },
+    { id: "food", title: "Comida 🍽️", videos: 5, bgColor: "bg-muted" },
+    { id: "lifestyle", title: "Lifestyle 🌿", videos: 5, bgColor: "bg-secondary" },
+    { id: "business", title: "Business 💼", videos: 5, bgColor: "bg-muted" },
+  ];
+
   return (
     <div className="min-h-screen bg-background scroll-smooth">
       {/* Hero Section */}
@@ -29,7 +39,7 @@ const Index = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* Left: Name and Social Links */}
             <div className="text-center md:text-left space-y-6 animate-fade-in-up">
-              <h1 className="text-5xl md:text-7xl font-bold text-foreground">
+              <h1 className="text-5xl md:text-7xl font-bold text-foreground handwriting typewriter inline-block">
                 Cristina <span className="text-primary">Yules</span>
               </h1>
               <p className="text-xl md:text-2xl text-muted-foreground">
@@ -124,40 +134,45 @@ const Index = () => {
       <section className="py-20 px-4 gradient-warm">
         <div className="container mx-auto max-w-6xl">
           <ScrollReveal>
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-foreground">
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-foreground">
               Mis vídeos
             </h2>
           </ScrollReveal>
 
-          <div className="space-y-16">
-            {/* Food Category */}
-            <VideoCategory 
-              title="Comida 🍽️" 
-              videos={5}
-              bgColor="bg-secondary"
-            />
+          {/* Category Navigation */}
+          <ScrollReveal delay={100}>
+            <div className="flex flex-wrap justify-center gap-4 mb-12">
+              {categories.map((category) => (
+                <button
+                  key={category.id}
+                  onClick={() => setActiveCategory(category.id)}
+                  className={`px-8 py-3 rounded-full font-semibold text-lg transition-smooth ${
+                    activeCategory === category.id
+                      ? "bg-primary text-primary-foreground shadow-soft"
+                      : "bg-card text-foreground hover:bg-secondary"
+                  }`}
+                >
+                  {category.title}
+                </button>
+              ))}
+            </div>
+          </ScrollReveal>
 
-            {/* Lifestyle Category */}
-            <VideoCategory 
-              title="Lifestyle 🌿" 
-              videos={5}
-              bgColor="bg-muted"
-            />
-
-            {/* Business Category */}
-            <VideoCategory 
-              title="Business 💼" 
-              videos={5}
-              bgColor="bg-secondary"
-            />
-
-            {/* Beauty Category */}
-            <VideoCategory 
-              title="Beauty 💄" 
-              videos={5}
-              bgColor="bg-muted"
-            />
-          </div>
+          {/* Video Grid */}
+          <ScrollReveal delay={200}>
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+              {Array.from({ length: categories.find(c => c.id === activeCategory)?.videos || 5 }).map((_, i) => (
+                <div
+                  key={i}
+                  className={`aspect-[9/16] rounded-xl ${categories.find(c => c.id === activeCategory)?.bgColor} shadow-soft hover-lift overflow-hidden relative group cursor-pointer`}
+                >
+                  <div className="w-full h-full flex items-center justify-center">
+                    <Play className="w-16 h-16 text-primary opacity-50 group-hover:opacity-100 transition-smooth" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -288,27 +303,6 @@ const Index = () => {
           </div>
         </div>
       </footer>
-    </div>
-  );
-};
-
-// Video Category Component
-const VideoCategory = ({ title, videos, bgColor }: { title: string; videos: number; bgColor: string }) => {
-  return (
-    <div className="space-y-6">
-      <h3 className="text-2xl md:text-3xl font-semibold text-foreground">{title}</h3>
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-        {Array.from({ length: videos }).map((_, i) => (
-          <div
-            key={i}
-            className={`aspect-[9/16] rounded-xl ${bgColor} shadow-soft hover-lift overflow-hidden relative group cursor-pointer`}
-          >
-            <div className="w-full h-full flex items-center justify-center">
-              <Play className="w-16 h-16 text-primary opacity-50 group-hover:opacity-100 transition-smooth" />
-            </div>
-          </div>
-        ))}
-      </div>
     </div>
   );
 };

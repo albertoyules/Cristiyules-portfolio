@@ -157,4 +157,33 @@ All colors MUST be HSL.
   .hover-zoom:hover img {
     transform: scale(1.05);
   }
+
+  .handwriting {
+    font-family: 'Dancing Script', cursive;
+  }
+
+  .typewriter {
+    overflow: hidden;
+    border-right: 3px solid hsl(var(--primary));
+    white-space: nowrap;
+    animation: typing 3s steps(15, end), blink-caret 0.75s step-end infinite;
+  }
+
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  @keyframes blink-caret {
+    from, to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: hsl(var(--primary));
+    }
+  }
 }
