@@ -6,6 +6,7 @@ type Props = {
   fallbackPoster?: string; // por si algo falla
   muted?: boolean;
   autoPlayOnHover?: boolean;
+  controls?: boolean;
 };
 
 const AutoPosterVideo: React.FC<Props> = ({
@@ -14,7 +15,7 @@ const AutoPosterVideo: React.FC<Props> = ({
   fallbackPoster,
   muted = false,
   autoPlayOnHover = false,
-  controls={true},
+  controls = true,
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [posterUrl, setPosterUrl] = useState<string | undefined>(undefined);
@@ -54,7 +55,7 @@ const AutoPosterVideo: React.FC<Props> = ({
       ref={videoRef}
       src={src}
       className={className}
-      controls
+      controls={controls}
       playsInline
       preload="metadata"
       muted={muted}
