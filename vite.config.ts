@@ -19,7 +19,10 @@ export default defineConfig(({ mode }) => ({
     // watch: {
     //     usePolling: true
     // }
+
+    // escucha en todas las interfaces de red
     host: "0.0.0.0",
+    // usa el puerto que configuraste para tu app
     port: 5000,
 
   },
@@ -28,8 +31,13 @@ export default defineConfig(({ mode }) => ({
 //...
 
     allowedHosts: 'all', // <-- AÑADE ESTA LÍNEA
+
+    // Permite que los hosts de Replit se conecten
+    allowedHosts: [".replit.dev"],
   },
-  plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
+  plugins: [react(), mode === "development" && componentTagger()].filter(
+    Boolean,
+  ),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
