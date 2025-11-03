@@ -46,7 +46,7 @@ All colors MUST be HSL.
     /* Gradients */
     --gradient-warm: linear-gradient(135deg, hsl(35 30% 95%) 0%, hsl(30 35% 92%) 100%);
     --gradient-autumn: linear-gradient(180deg, hsl(30 30% 98%) 0%, hsl(35 25% 94%) 100%);
-    
+
     /* Shadows */
     --shadow-soft: 0 4px 20px -4px hsl(25 45% 20% / 0.08);
     --shadow-hover: 0 8px 30px -6px hsl(25 45% 20% / 0.12);
@@ -96,73 +96,92 @@ All colors MUST be HSL.
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     background: hsl(35 25% 97%);
     position: relative;
-    overflow-x: hidden;
+    overflow-x: hidden; /* <--- YA LO TIENES, PERO REFUERZA ESTO */
+
+    /* AÑADE ESTA LÍNEA DE SEGURIDAD */
+    width: 100vw;
   }
 
   body::before {
     content: '';
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: 0;
     pointer-events: none;
-    background-image: 
+    background-image:
       radial-gradient(ellipse 800px 150px at 20% 15%, hsl(30 60% 55% / 0.25) 0%, transparent 60%),
       radial-gradient(ellipse 600px 120px at 70% 45%, hsl(25 55% 50% / 0.2) 0%, transparent 55%),
-      radial-gradient(ellipse 700px 140px at 35% 75%, hsl(28 58% 52% / 0.22) 0%, transparent 58%);
+      radial-gradient(ellipse 700px 140px at 35% 75%, hsl(28 58% 52% / 0.22) 0%, transparent 58%),
+      radial-gradient(ellipse 900px 130px at 90% 90%, hsl(35 50% 50% / 0.2) 0%, transparent 55%);
+      
     background-size: 100% 100%;
     animation: wave-drift 30s ease-in-out infinite;
   }
 
   body::after {
     content: '';
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: 0;
     pointer-events: none;
-    background-image: 
+    background-image:
       radial-gradient(ellipse 500px 100px at 85% 25%, hsl(35 50% 60% / 0.18) 0%, transparent 65%),
-      radial-gradient(ellipse 650px 130px at 15% 60%, hsl(20 65% 48% / 0.2) 0%, transparent 60%);
+      radial-gradient(ellipse 650px 130px at 15% 60%, hsl(20 65% 48% / 0.2) 0%, transparent 60%),
+      radial-gradient(ellipse 400px 80px at 50% 50%, hsl(25 60% 50% / 0.15) 0%, transparent 60%),
+      radial-gradient(ellipse 500px 100px at 10% 50%, hsl(25 60% 50% / 0.15) 0%, transparent 60%);/* <-- Nueva 1 */
+      
     animation: wave-float 35s ease-in-out infinite reverse;
   }
 
   @keyframes wave-drift {
-    0%, 100% {
+
+    0%,
+    100% {
       transform: translateY(0) scaleX(1);
     }
+
     50% {
       transform: translateY(20px) scaleX(1.05);
     }
   }
 
   @keyframes wave-float {
-    0%, 100% {
+
+    0%,
+    100% {
       transform: translateY(0) scaleY(1);
     }
+
     50% {
       transform: translateY(-15px) scaleY(1.08);
     }
   }
 
 
-  body > * {
+  body>* {
     position: relative;
     z-index: 1;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: 'Poppins', system-ui, -apple-system, sans-serif;
   }
 }
 
 @layer utilities {
   .gradient-warm {
-    background: var(--gradient-warm);
+    background: hsl(35 25% 97%);
     position: relative;
     overflow: hidden;
   }
@@ -176,22 +195,26 @@ All colors MUST be HSL.
     height: 110%;
     background-image:
       radial-gradient(ellipse 550px 110px at 25% 30%, hsl(30 58% 55% / 0.24) 0%, transparent 60%),
-      radial-gradient(ellipse 480px 95px at 75% 65%, hsl(25 62% 50% / 0.2) 0%, transparent 58%);
+      radial-gradient(ellipse 480px 95px at 75% 65%, hsl(25 62% 50% / 0.2) 0%, transparent 58%),
+      radial-gradient(ellipse 500px 100px at 10% 50%, hsl(25 60% 50% / 0.15) 0%, transparent 60%); /* <-- Nueva 1 */
+      
     pointer-events: none;
     animation: warm-wave 20s ease-in-out infinite;
   }
 
   @keyframes warm-wave {
-    0%, 100% {
+
+    0%,
+    100% {
       transform: translateX(0);
     }
+
     50% {
       transform: translateX(15px);
     }
   }
 
   .gradient-autumn {
-    background: var(--gradient-autumn);
     position: relative;
     overflow: hidden;
   }
@@ -206,15 +229,20 @@ All colors MUST be HSL.
     background-image:
       radial-gradient(ellipse 620px 125px at 18% 22%, hsl(28 60% 52% / 0.26) 0%, transparent 62%),
       radial-gradient(ellipse 580px 115px at 82% 70%, hsl(32 55% 58% / 0.22) 0%, transparent 58%),
-      radial-gradient(ellipse 450px 90px at 45% 88%, hsl(25 58% 54% / 0.2) 0%, transparent 60%);
+      radial-gradient(ellipse 450px 90px at 45% 88%, hsl(25 58% 54% / 0.2) 0%, transparent 60%),
+      radial-gradient(ellipse 480px 95px at 75% 65%, hsl(25 62% 50% / 0.2) 0%,   transparent 58%);
+      
     pointer-events: none;
     animation: autumn-flow 25s ease-in-out infinite;
   }
 
   @keyframes autumn-flow {
-    0%, 100% {
+
+    0%,
+    100% {
       transform: translateY(0) scaleX(1);
     }
+
     50% {
       transform: translateY(-12px) scaleX(1.03);
     }
@@ -241,6 +269,7 @@ All colors MUST be HSL.
       opacity: 0;
       transform: translateY(30px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -275,7 +304,7 @@ All colors MUST be HSL.
   .typewriter {
     overflow: hidden;
     border-right: 3px solid hsl(var(--primary));
-    white-space: nowrap;
+    white-space: nowrap; /* ESTA LÍNEA ES CLAVE */
     animation: typing 3s steps(15, end), blink-caret 0.75s step-end infinite;
   }
 
@@ -289,9 +318,12 @@ All colors MUST be HSL.
   }
 
   @keyframes blink-caret {
-    from, to {
+
+    from,
+    to {
       border-color: transparent;
     }
+
     50% {
       border-color: hsl(var(--primary));
     }
