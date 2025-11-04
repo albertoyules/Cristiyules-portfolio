@@ -103,6 +103,21 @@ const Index = () => {
     },
   ];
 
+  const brands = [
+    "Freshly",
+    "Derma Protect",
+    "FitPlanet",
+    "Kampaoh",
+    "Llaollao",
+    "Incept Coffee",
+    "Petroni",
+    "BRO",
+    "Klayful",
+    "Gelled",
+    "Dunkin Donuts",
+    "Junta de Andalucia",
+  ];
+
   return (
     <div className="min-h-screen bg-transparent scroll-smooth overflow-x-hidden flex flex-col">
       {/* Hero Section */}
@@ -303,8 +318,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Brands Section */}
-      <section className="py-20 px-4 gradient-warm">
+      {/* Brands Carousel Section */}
+      <section className="py-20 px-4 bg-stone-100">
         <div className="container mx-auto max-w-6xl">
           <ScrollReveal>
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-foreground">
@@ -312,27 +327,29 @@ const Index = () => {
             </h2>
           </ScrollReveal>
 
-          <div className="bg-card rounded-3xl shadow-soft p-12">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 items-center justify-items-center">
-              {[
-                "Freshly",
-                "Derma Protect",
-                "FitPlanet",
-                "Kampaoh",
-                "Llaollao",
-                "Incept Coffee",
-                "Petroni",
-                "BRO",
-                "Klayful",
-                "Gelled",
-                "Dunkin Donuts",
-                "Junta de Andalucia",
-              ].map((brand) => (
+          {/* Infinite Logo Carousel */}
+          <div className="relative overflow-hidden">
+            <div className="flex animate-logo-scroll">
+              {/* First set of logos */}
+              {brands.map((brand, index) => (
                 <div
-                  key={brand}
-                  className="text-2xl font-semibold text-muted-foreground hover:text-primary transition-smooth"
+                  key={`brand-1-${index}`}
+                  className="flex-shrink-0 mx-8 flex items-center justify-center min-w-[200px]"
                 >
-                  {brand}
+                  <div className="text-2xl md:text-3xl font-bold text-muted-foreground hover:text-primary transition-smooth whitespace-nowrap">
+                    {brand}
+                  </div>
+                </div>
+              ))}
+              {/* Duplicate set for seamless loop */}
+              {brands.map((brand, index) => (
+                <div
+                  key={`brand-2-${index}`}
+                  className="flex-shrink-0 mx-8 flex items-center justify-center min-w-[200px]"
+                >
+                  <div className="text-2xl md:text-3xl font-bold text-muted-foreground hover:text-primary transition-smooth whitespace-nowrap">
+                    {brand}
+                  </div>
                 </div>
               ))}
             </div>
@@ -340,12 +357,21 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Reviews Section - Placeholder */}
+      <section id="reviews" className="py-20 px-4 bg-background">
+        <div className="container mx-auto max-w-6xl">
+          {/* Sección vacía preparada para testimonios y opiniones */}
+        </div>
+      </section>
+
       {/* Contact CTA Section */}
-      <section className="py-20 px-4 bg-transparent">
+      <section className="py-20 px-4 bg-stone-100">
         <div className="container mx-auto max-w-4xl text-center">
           <ScrollReveal>
-            <h2 className="text-4xl md:text-6xl font-bold mb-8 text-foreground">
-              ¿Trabajamos juntos?
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-8 text-foreground leading-tight">
+              <span className="font-display uppercase tracking-tight">Contacta</span> conmigo{" "}
+              <span className="text-primary">&</span>{" "}
+              <span className="font-display uppercase tracking-tight">¡Colaboremos!</span>
             </h2>
             <p className="text-xl md:text-2xl text-muted-foreground mb-12">
               Escríbeme y hagamos crecer tu marca.
