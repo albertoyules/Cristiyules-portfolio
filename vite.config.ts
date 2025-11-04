@@ -1,29 +1,29 @@
-      // vite.config.ts
+// vite.config.ts
 
-      import { defineConfig } from "vite";
-      import react from "@vitejs/plugin-react-swc";
-      import path from "path";
-      import { componentTagger } from "lovable-tagger";
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
+import path from "path";
+import { componentTagger } from "lovable-tagger";
 
-      export default defineConfig(({ mode }) => ({
+export default defineConfig(({ mode }) => ({
 
-        server: {
-          host: "0.0.0.0",
-          port: 5000,
-        
-          hmr: {
-            host: '6d768673-3c1c-4714-8282-62270a0e24c9-00-bvo30qd7ieu8.riker.replit.dev',
-            port: 443, 
-          },
+  server: {
+    host: "0.0.0.0",
+    port: 5000, // <--- COMA REQUERIDA AQUÍ
 
-          allowedHosts: ['.replit.dev', 'all'], 
-        },
+    hmr: {
+      host: '6d768673-3c1c-4714-8282-62270a0e24c9-00-bvo30qd7ieu8.riker.replit.dev',
+      port: 443,
+    }, // <--- COMA REQUERIDA AQUÍ
 
-        plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
+    allowedHosts: ['.replit.dev', 'all'], // Sin coma, porque es la última propiedad de 'server'
+  }, // <--- COMA REQUERIDA AQUÍ
 
-        resolve: {
-          alias: {
-            "@": path.resolve(__dirname, "./src"),
-          },
-        },
-      }));
+  plugins: [react(), mode === "development" && componentTagger()].filter(Boolean), // <--- COMA REQUERIDA AQUÍ
+
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+}));
