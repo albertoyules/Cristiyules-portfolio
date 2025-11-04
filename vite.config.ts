@@ -6,20 +6,11 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
+  // No necesitamos la configuración 'server' para el build de Vercel
 
-  server: {
-    host: "0.0.0.0",
-    port: 5000, // <--- COMA REQUERIDA AQUÍ
-
-    hmr: {
-      host: '6d768673-3c1c-4714-8282-62270a0e24c9-00-bvo30qd7ieu8.riker.replit.dev',
-      port: 443,
-    }, // <--- COMA REQUERIDA AQUÍ
-
-    allowedHosts: ['.replit.dev', 'all'], // Sin coma, porque es la última propiedad de 'server'
-  }, // <--- COMA REQUERIDA AQUÍ
-
-  plugins: [react(), mode === "development" && componentTagger()].filter(Boolean), // <--- COMA REQUERIDA AQUÍ
+  plugins: [react(), mode === "development" && componentTagger()].filter(
+    Boolean,
+  ),
 
   resolve: {
     alias: {
