@@ -180,6 +180,25 @@ const Index = () => {
         </div>
       </header>
 
+      {/* Sección de Opiniones/Testimonios (NUEVA) */}
+      <section id="reviews" className="py-20 px-4 bg-stone-200">
+        <div className="container mx-auto max-w-4xl text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-12">
+            Lo que dicen las marcas ⭐
+          </h2>
+      
+          {/* Aquí irá el código del Slider/Carrusel de Testimonios */}
+          <div className="bg-card p-8 rounded-xl shadow-hover border border-border">
+              <p className="text-xl italic text-muted-foreground mb-4">
+                  "Cristina demostró una gran profesionalidad y el contenido superó nuestras expectativas."
+              </p>
+              <p className="font-semibold text-primary">— Nombre de Marca, CEO</p>
+          </div>
+          {/* // Fin del Slider de Testimonios */}
+      
+        </div>
+      </section>
+
       {/* About Me Section */}
       <section className="py-20 px-4 bg-transparent">
         <div className="container mx-auto max-w-6xl">
