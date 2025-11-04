@@ -7,7 +7,7 @@ import path from "path";
 export default defineConfig(({ mode }) => ({
   // No necesitamos la configuración 'server' para el build de Vercel
 
-  plugins: [react(), mode === "development" && componentTagger()].filter(
+  plugins: [react()].filter(
     Boolean,
   ),
 
