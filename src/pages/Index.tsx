@@ -111,9 +111,9 @@ const Index = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* Left: Name and Social Links */}
             <div className="text-center md:text-left space-y-6 animate-fade-in-up overflow-hidden">
-              <h1 className="text-7xl md:text-8xl font-bold text-foreground handwriting typewriter text-center md:text-left">
-                  <span className="block md:inline">Cristina </span> {}
-                  <span className="text-primary block md:inline">Yules</span> {}
+              <h1 className="text-7xl md:text-8xl font-black uppercase tracking-tighter font-display text-foreground">
+                  <span className="block md:inline">CRISTINA </span>
+                  <span className="text-primary block md:inline">YULES</span>
               </h1>
               <p className="text-xl md:text-3xl text-muted-foreground">
                 Creadora de Contenido UGC
