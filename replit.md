@@ -17,7 +17,7 @@ Portfolio website for Cristina Yules, a UGC (User Generated Content) creator. Th
 - `src/assets/` - Images and videos for portfolio content
 - `vite.config.ts` - Vite configuration for Replit environment
 
-## Recent Changes (November 3, 2025)
+## Recent Changes (November 4, 2025)
 
 ### Migration from Lovable to Replit
 - Configured Vite server for Replit environment (port 5000, host 0.0.0.0)
@@ -25,11 +25,33 @@ Portfolio website for Cristina Yules, a UGC (User Generated Content) creator. Th
 - Successfully migrated all dependencies and verified functionality
 
 ### Design Enhancement: Dynamic Background
-- Implemented dynamic geometric background with abstract shapes in brown/earth tones
-- Added subtle radial gradients throughout the page for visual depth
-- Created animated floating shapes that move slowly for a living, non-static feel
-- Enhanced gradient sections (.gradient-warm and .gradient-autumn) with additional abstract layers
+- Implemented wavy organic lines with abstract shapes in brown/earth tones
+- Added elliptical gradients (opacities 0.18-0.26) for visual depth
+- Created animated flowing shapes that move slowly (wave-drift, wave-float animations)
+- Enhanced gradient sections with subtle wave animations
 - All changes maintain excellent readability while adding visual interest
+
+### Typography Update: Oswald Display Font
+- Added Oswald font from Google Fonts for impact-style titles
+- Applied font-display class to main title "CRISTINA YULES"
+- Title displays in uppercase with font-black weight
+- Responsive layout: 2 lines on mobile (block), 1 line on desktop (md:inline)
+
+### Brands Section: Infinite Carousel
+- Replaced static brand grid with infinite scrolling carousel
+- Implemented slide-left animation (30s linear infinite loop)
+- Logos scroll continuously without user interaction
+- Changed section background to bg-stone-100 for more color
+
+### Contact Section Redesign
+- New playful headline using font-display: "CONTACTA conmigo & ¡COLABOREMOS!"
+- Mixed typography styles for visual interest
+- Changed background to bg-stone-100 for consistency
+- Maintained friendly, approachable tone
+
+### Reviews Section Placeholder
+- Added empty section (#reviews) prepared for future testimonials
+- Ready for carousel of brand reviews and opinions
 
 ## Color Palette
 - Primary: Warm browns (HSL: 25 55% 45%)
